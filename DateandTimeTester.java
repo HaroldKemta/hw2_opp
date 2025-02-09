@@ -65,7 +65,8 @@ import java.util.Scanner;
 
          return true;
          
-      } else {}
+      } else { return false; }
+      
      
       
    }
@@ -96,6 +97,26 @@ import java.util.Scanner;
       day = Integer.parseInt(parts[1]);
 
       return day;
+
+
+   }
+
+   public boolean isValidTime(String time); {
+
+      String[] part= time.split(":");
+
+      if ( part.length != 2 ) { return false; }
+
+      int hour ;
+
+      hour = getHour(time);
+
+
+   }
+
+   public int gethour(String time) {
+
+      String[] parts = time.split(":");
 
 
    }
