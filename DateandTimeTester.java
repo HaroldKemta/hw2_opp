@@ -60,6 +60,8 @@ import java.util.Scanner;
       int day;
 
       day = getDay(date);
+
+      if (( moth>=1 )
       
    }
 
@@ -82,7 +84,13 @@ import java.util.Scanner;
    public int getDay ( String date) {
 
 
-      String parts = date.split("/");
+      String[] parts = date.split("/");
+
+      int day; 
+
+      day = Integer.parseInt(parts[1]);
+
+      return day;
 
 
    }
