@@ -61,7 +61,12 @@ import java.util.Scanner;
 
       day = getDay(date);
 
-      if (( moth>=1 )
+      if ((month >= 1 && month <= 12 ) && (day >=1 && day <= 30)) {
+
+         return true;
+         
+      } else {}
+     
       
    }
 
