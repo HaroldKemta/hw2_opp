@@ -13,7 +13,7 @@ import java.util.Scanner;
       while (true) {
          if (isValid(input)) {
 
-            System.out.println("You entered a correct date");
+            System.out.println("You entered a valid date and time");
             break;
 
          }
@@ -57,14 +57,15 @@ import java.util.Scanner;
 
       month = getMonth( date );
 
+      int day;
 
-
-
+      day = getDay(date);
       
    }
 
 
-   public int getmonth (String date){
+
+   public int getMonth (String date){
 
       String[] parts = date.split("/");
 
@@ -74,6 +75,14 @@ import java.util.Scanner;
       
       return month;
 
+   }
+
+
+
+   public int getDay ( String date) {
+
+
+      String parts = date.split("/");
 
 
    }
