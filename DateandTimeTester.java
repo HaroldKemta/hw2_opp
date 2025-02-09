@@ -10,17 +10,21 @@ import java.util.Scanner;
 
       String input= scan.nextLine();
 
-      if (isValid(input)) {
+      while (true) {
+         if (isValid(input)) {
 
-         System.out.println("You entered a correct date");
-
-      }
-
-         else { 
-
-            System.out.println("enter a correct date");
+            System.out.println("You entered a correct date");
+            break;
 
          }
+
+            else { 
+
+               System.out.println("enter a correct date");
+
+         }
+
+      }
 
       scan.close();
    }
@@ -37,12 +41,41 @@ import java.util.Scanner;
       String date = parts [0];
       String time = parts [1];
 
-      return isValidDate(date);
+      return isValidDate(date) && isValidTime(time);
       
-      return isValidTime(time);
+   }
+
+
+
+   public boolean  isValidDate( String date ) {
+
+      String[] parts = date.split("/");
+
+      if (parts.length != 2) { return false; }
+
+      int month;
+
+      month = getMonth( date );
+
+
+
+
+      
+   }
+
+
+   public int getmonth (String date){
+
+      String[] parts = date.split("/");
+
+      int month;
+
+      month = Integer.parseInt(parts[0]);
+      
+      return month;
+
 
 
    }
-
 
  }
