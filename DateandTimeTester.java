@@ -101,7 +101,7 @@ import java.util.Scanner;
 
    }
 
-   public boolean isValidTime(String time); {
+   public boolean isValidTime(String time) {
 
       String[] part= time.split(":");
 
@@ -109,14 +109,49 @@ import java.util.Scanner;
 
       int hour ;
 
-      hour = getHour(time);
+      hour = getHour(time); 
+
+      int minute;
+
+      minute= getMinute(time);
+
+      if ((hour <= 1 && hour >= 23) && (minute <= 1 && minute >= 59)) {
+         return true;
+
+       } else  { return false; } 
+      
+
+
+
+
+
+      
 
 
    }
 
-   public int gethour(String time) {
+   public int getHour(String time) {
 
       String[] parts = time.split(":");
+
+      int hour ;
+
+      hour = Integer.parseInt(parts[0]) ;
+
+      return hour;
+
+   }
+
+
+   public int getMinute( String time) {
+
+      String [] parts = time.split(":");
+
+      int min; 
+
+      min = Integer.parseInt(parts[1]);
+
+      return min;
 
 
    }
