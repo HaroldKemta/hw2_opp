@@ -1,159 +1,110 @@
 import java.util.Scanner;
 
- public class DateandTimeTester {
+public class DateandTimeTester {
 
-   public void run () {
-
+   public void run() {
       Scanner scan = new Scanner(System.in);
-
       System.out.println("Enter a date and time (MM/DD hh:mm) : ");
 
-      String input= scan.nextLine();
-
       while (true) {
+         String input = scan.nextLine();
          if (isValid(input)) {
-
             System.out.println("You entered a valid date and time");
             break;
-
+         } else {
+            System.out.println("Enter a correct date");
          }
-
-            else { 
-
-               System.out.println("enter a correct date");
-
-         }
-
       }
 
       scan.close();
    }
 
-
-
-
    public boolean isValid(String input) {
-
       String[] parts = input.split(" ");
-      
-      if (parts.length != 2) {return false;}
+      if (parts.length != 2) {
+         return false;
+      }
 
-      String date = parts [0];
-      String time = parts [1];
+      String date = parts[0];
+      String time = parts[1];
 
       return isValidDate(date) && isValidTime(time);
-      
    }
 
-
-
-   public boolean  isValidDate( String date ) {
-
+   public boolean isValidDate(String date) {
       String[] parts = date.split("/");
 
-      if (parts.length != 2) { return false; }
+      if (parts.length != 2) {
+         return false;
+      }
 
-      int month;
+      int month = getMonth(date);
+      int day = getDay(date);
 
-      month = getMonth( date );
+      if (month < 1 || month > 12) {
+         return false;
+      }
 
-      int day;
+      // Validate day based on the month
+      if (day < 1 || day > getMaxDaysInMonth(month)) {
+         return false;
+      }
 
-      day = getDay(date);
-
-      if ((month >= 1 && month <= 12 ) && (day >=1 && day <= 30)) {
-
-         return true;
-         
-      } else { return false; }
-      
-     
-      
+      return true;
    }
 
-
-
-   public int getMonth (String date){
-
+   public int getMonth(String date) {
       String[] parts = date.split("/");
-
-      int month;
-
-      month = Integer.parseInt(parts[0]);
-      
-      return month;
-
+      return Integer.parseInt(parts[0]);
    }
 
-
-
-   public int getDay ( String date) {
-
-
+   public int getDay(String date) {
       String[] parts = date.split("/");
-
-      int day; 
-
-      day = Integer.parseInt(parts[1]);
-
-      return day;
-
-
+      return Integer.parseInt(parts[1]);
    }
 
    public boolean isValidTime(String time) {
+      String[] parts = time.split(":");
 
-      String[] part= time.split(":");
+      if (parts.length != 2) {
+         return false;
+      }
 
-      if ( part.length != 2 ) { return false; }
+      int hour = getHour(time);
+      int minute = getMinute(time);
 
-      int hour ;
+      // Corrected logic for time validation
+      if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+         return false;
+      }
 
-      hour = getHour(time); 
-
-      int minute;
-
-      minute= getMinute(time);
-
-      if ((hour <= 1 && hour >= 23) && (minute <= 1 && minute >= 59)) {
-         return true;
-
-       } else  { return false; } 
-      
-
-
-
-
-
-      
-
-
+      return true;
    }
 
    public int getHour(String time) {
-
       String[] parts = time.split(":");
-
-      int hour ;
-
-      hour = Integer.parseInt(parts[0]) ;
-
-      return hour;
-
+      return Integer.parseInt(parts[0]);
    }
 
-
-   public int getMinute( String time) {
-
-      String [] parts = time.split(":");
-
-      int min; 
-
-      min = Integer.parseInt(parts[1]);
-
-      return min;
-
-
+   public int getMinute(String time) {
+      String[] parts = time.split(":");
+      return Integer.parseInt(parts[1]);
    }
 
- }
+   private int getMaxDaysInMonth(int month) {
+      if (month == 4 || month == 6 || month == 9 || month == 11) {
+         return 30; // April, June, September, November
+      } else if (month == 2) {
+         return 28; // Ignoring leap years for simplicity
+      } else {
+         return 31;
+      }
+   }
+
+   public static void main(String[] args) {
+      new DateandTimeTester().run();
+   }
+}
+
+
+ 
